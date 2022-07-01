@@ -167,17 +167,17 @@ void GameScene::loop()
 void GameScene::keyPressEvent(QKeyEvent *event)
 {
     switch ( event->key() ) {
-        case Qt::LeftArrow:
+        case Qt::Key_Left:
     {
         m_isLeftPressed = true;
     }
         break;
-    case Qt::RightArrow:
+    case Qt::Key_Right:
     {
         m_isRightPressed = true;
     }
         break;
-    case Qt::UpArrow:
+    case Qt::Key_Up:
     {
         m_isUpPressed = true;
     }
@@ -204,17 +204,17 @@ void GameScene::keyPressEvent(QKeyEvent *event)
 void GameScene::keyReleaseEvent(QKeyEvent *event)
 {
     switch ( event->key() ) {
-        case Qt::LeftArrow:
+        case Qt::Key_Left:
     {
         m_isLeftPressed = false;
     }
         break;
-    case Qt::RightArrow:
+    case Qt::Key_Right:
     {
         m_isRightPressed = false;
     }
         break;
-    case Qt::UpArrow:
+    case Qt::Key_Up:
     {
         m_isUpPressed = false;
     }
