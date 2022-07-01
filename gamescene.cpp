@@ -74,14 +74,15 @@ void GameScene::loop()
 
         if(m_isUpPressed)
         {
-            if(pos.y*Game::SCALE >= 463)
+            qDebug() << "pos " << pos.y*Game::SCALE;
+            if(pos.y*Game::SCALE <= 465 && pos.y*Game::SCALE >= 222)
             {
                 vel.y = -13;
             }
         }
         else
         {
-            vel.y = 0;
+            vel.y = 5;
         }
 
         m_game.m_playerBody[0]->SetLinearVelocity(vel);

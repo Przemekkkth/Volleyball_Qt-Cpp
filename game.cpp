@@ -23,7 +23,7 @@ Game::Game() : m_world(GRAVITY)
     //players def
     for(int i = 0; i < 2; ++i)
     {
-        bdef.position.Set(20*i,2);
+        bdef.position.Set(20*i,20);
         b2CircleShape circle;
         circle.m_radius=32/SCALE;
         circle.m_p.Set(0,13/SCALE);
