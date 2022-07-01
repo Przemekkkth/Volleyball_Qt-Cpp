@@ -7,7 +7,7 @@ GameScene::GameScene(QObject *parent)
     , m_isLeftPressed(false), m_isRightPressed(false), m_isUpPressed(false), m_isAPressed(false), m_isDPressed(false), m_isWPressed(false)
 {
     loadPixmap();
-    setSceneRect(Game::RESOLUTION.width()/2,0, Game::RESOLUTION.width(), Game::RESOLUTION.height());
+    setSceneRect(0,0, Game::RESOLUTION.width(), Game::RESOLUTION.height());
 
     connect(&m_timer, &QTimer::timeout, this, &GameScene::loop);
     m_timer.start(Game::ITERATION_VALUE);
@@ -126,11 +126,8 @@ void GameScene::loop()
         bgItem->setTransformationMode(Qt::SmoothTransformation);
         addItem(bgItem);
 
-        qDebug() << "Ilość elementow";
-        int idd = 0;
         for (b2Body* it = m_game.m_world.GetBodyList(); it != 0; it = it->GetNext())
         {
-            qDebug() << ++idd;
             b2Vec2 pos = it->GetPosition();
             float angle = it->GetAngle();
 

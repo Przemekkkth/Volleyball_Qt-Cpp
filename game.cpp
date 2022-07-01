@@ -1,4 +1,5 @@
 #include "game.h"
+#include <QDebug>
 
 const QSize Game::RESOLUTION = QSize(800, 600);
 const float Game::SCALE = 20.f;
@@ -33,8 +34,12 @@ Game::Game() : m_world(GRAVITY)
         m_playerBody[i]->CreateFixture(&circle,5);
         m_playerBody[i]->SetFixedRotation(true);
     }
-    m_playerBody[0]->GetUserData().pointer = player1;
-    m_playerBody[1]->GetUserData().pointer = player2;
+    b2BodyUserData p1;
+    p1.pointer = uintptr_t("player1");
+    m_playerBody[0]->SetUserData(p1);
+    b2BodyUserData p2;
+    p2.pointer = uintptr_t("player2");
+    m_playerBody[1]->SetUserData(p2);
 
     //ball def
     bdef.position.Set(5,1);
@@ -46,7 +51,14 @@ Game::Game() : m_world(GRAVITY)
     fdef.restitution = 0.95;
     fdef.density = 0.2;
     m_ballBody->CreateFixture(&fdef);
-    m_ballBody->GetUserData().pointer = ball;
+
+    b2BodyUserData b;
+    b.pointer = uintptr_t("ball");;
+    m_ballBody->SetUserData(b);
+
+    player1 = m_playerBody[0]->GetUserData().pointer;
+    player2 = m_playerBody[1]->GetUserData().pointer;
+    ball = m_ballBody->GetUserData().pointer;
 }
 
 void Game::setWall(int x, int y, int w, int h)
