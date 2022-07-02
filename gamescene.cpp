@@ -120,6 +120,7 @@ void GameScene::loop()
 
         //ball
         vel = m_game.m_ballBody->GetLinearVelocity();
+
         m_game.m_ballBody->SetLinearVelocity( 15/vel.Length() * vel);
         //Draw
         clear();

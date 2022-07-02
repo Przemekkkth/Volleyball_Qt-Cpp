@@ -13,10 +13,11 @@ const QString Game::PATH_TO_BLOBBY_PIXMAP = ":/res/blobby.png";
 
 Game::Game() : m_world(GRAVITY)
 {
-    setWall(400,520,2000,10);
-    setWall(400, 450,10,170);
-    setWall(0,0,10,2000);
-    setWall(800,0,10,2000);
+    setWall(400,520,2000,10); // button
+    setWall(365, 450,5,200);  // middle
+    setWall(-50,0,10,2000);   // left
+    setWall(780,0,10,2000);   // right
+    setWall(-50, -90, 1000, 1);
 
     b2BodyDef bdef;
     bdef.type=b2_dynamicBody;
@@ -68,6 +69,7 @@ void Game::setWall(int x, int y, int w, int h)
 
     b2BodyDef bdef;
     bdef.position.Set(x/SCALE, y/SCALE);
+    bdef.type = b2_staticBody;
 
     b2Body *b_ground = m_world.CreateBody(&bdef);
     b_ground->CreateFixture(&gr, 1);
