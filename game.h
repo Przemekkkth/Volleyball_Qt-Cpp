@@ -16,6 +16,7 @@ public:
     static const QString PATH_TO_BACKGROUND_PIXMAP;
     static const QString PATH_TO_BALL_PIXMAP;
     static const QString PATH_TO_BLOBBY_PIXMAP;
+    static const float PLAYER_SPEED;
     b2World m_world;
 
     b2Body *m_playerBody[2];

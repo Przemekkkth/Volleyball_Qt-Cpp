@@ -61,11 +61,11 @@ void GameScene::loop()
         b2Vec2 vel = m_game.m_playerBody[0]->GetPosition();
         if(m_isRightPressed)
         {
-            vel.x = 5;
+            vel.x = Game::PLAYER_SPEED;
         }
         else if(m_isLeftPressed)
         {
-            vel.x = -5;
+            vel.x = -Game::PLAYER_SPEED;
         }
         if(!m_isRightPressed && !m_isLeftPressed)
         {
@@ -93,11 +93,11 @@ void GameScene::loop()
         vel = m_game.m_playerBody[1]->GetPosition();
         if(m_isDPressed)
         {
-            vel.x = 5;
+            vel.x = Game::PLAYER_SPEED;
         }
         else if(m_isAPressed)
         {
-            vel.x = -5;
+            vel.x = -Game::PLAYER_SPEED;
         }
         if(!m_isDPressed && !m_isAPressed)
         {

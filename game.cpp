@@ -11,6 +11,8 @@ const QString Game::PATH_TO_BACKGROUND_PIXMAP = ":/res/background.png";
 const QString Game::PATH_TO_BALL_PIXMAP = ":/res/ball.png";
 const QString Game::PATH_TO_BLOBBY_PIXMAP = ":/res/blobby.png";
 
+const float Game::PLAYER_SPEED = 8.0f;
+
 Game::Game() : m_world(GRAVITY)
 {
     setWall(400,520,2000,10); // button
