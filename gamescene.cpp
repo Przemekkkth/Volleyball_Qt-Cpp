@@ -1,6 +1,8 @@
 #include "gamescene.h"
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
+#include <QDir>
+#include <QPainter>
 
 GameScene::GameScene(QObject *parent)
     : QGraphicsScene{parent}, m_loopSpeed(16.6666f), m_deltaTime(0.0f), m_loopTime(0.0f)
@@ -73,6 +75,19 @@ void GameScene::drawPauseText()
     addItem(textItem);
     textItem->setBrush(Qt::red);
     textItem->setPen(QPen(Qt::green));
+}
+
+void GameScene::renderScene()
+{
+    static int index = 0;
+    QString fileName = QDir::currentPath() + QDir::separator() + "screen" + QString::number(index++) + ".png";
+    QRect rect = sceneRect().toAlignedRect();
+    QImage image(rect.size(), QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
+    QPainter painter(&image);
+    render(&painter);
+    image.save(fileName);
+    qDebug() << "saved " << fileName;
 }
 
 void GameScene::loop()
@@ -166,6 +181,7 @@ void GameScene::loop()
 
             if (it->GetUserData().pointer == m_game.player1)
             {
+
                 QGraphicsPixmapItem *p1Item = new QGraphicsPixmapItem(m_blobbyPixmap);
                 p1Item->setTransformOriginPoint(75/2,90/2);
                 p1Item->setPos(pos.x*Game::SCALE, pos.y*Game::SCALE);
@@ -260,6 +276,10 @@ void GameScene::keyPressEvent(QKeyEvent *event)
         if(event->key() == Qt::Key_P)
         {
             m_game.m_pause = !m_game.m_pause;
+        }
+        else if(event->key() == Qt::Key_Z)
+        {
+            //renderScene();
         }
     }
     QGraphicsScene::keyPressEvent(event);

@@ -20,6 +20,7 @@ private:
     void loadPixmap();
     void drawScore();
     void drawPauseText();
+    void renderScene();
     Game m_game;
     QTimer m_timer;
     QElapsedTimer m_elapsedTimer;
