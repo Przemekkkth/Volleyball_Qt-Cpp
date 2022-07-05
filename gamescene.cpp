@@ -199,12 +199,15 @@ void GameScene::loop()
                     {
                         if(pos.x < (365/Game::SCALE))
                         {
-                            qDebug() << "Left side A bottomWall";
+                            m_game.m_ballBody->SetTransform(b2Vec2(18, 8), 1);
+                            m_game.m_ballBody->SetLinearVelocity(b2Vec2(0.5, -1.0));
+
                             m_game.m_score2++;
                         }
                         else if(pos.x > ((365 + 5)/Game::SCALE))
-                        {
-                            qDebug() << "Right side B bottomWall";
+                        {   
+                            m_game.m_ballBody->SetTransform(b2Vec2(18, 8), 1);
+                            m_game.m_ballBody->SetLinearVelocity(b2Vec2(-0.5, -1.0));
                             m_game.m_score1++;
                         }
                     }
