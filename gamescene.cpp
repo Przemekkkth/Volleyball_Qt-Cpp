@@ -63,13 +63,25 @@ void GameScene::drawScore()
 
 }
 
+void GameScene::drawPauseText()
+{
+    if(!m_game.m_pause)
+        return;
+    QGraphicsSimpleTextItem* textItem = new QGraphicsSimpleTextItem("Pause");
+    textItem->setPos(Game::RESOLUTION.width()/2-textItem->boundingRect().width()-75, 50);
+    textItem->setFont(QFont("Arial", 75, 90));
+    addItem(textItem);
+    textItem->setBrush(Qt::red);
+    textItem->setPen(QPen(Qt::green));
+}
+
 void GameScene::loop()
 {
     m_deltaTime = m_elapsedTimer.elapsed();
     m_elapsedTimer.restart();
 
     m_loopTime += m_deltaTime;
-    if( m_loopTime > m_loopSpeed )
+    if( m_loopTime > m_loopSpeed && !m_game.m_pause)
     {
         for(int n = 0; n < 2; ++n)
         {
@@ -202,12 +214,13 @@ void GameScene::loop()
 
         drawScore();
     }
+    drawPauseText();
 }
 
 void GameScene::keyPressEvent(QKeyEvent *event)
 {
     switch ( event->key() ) {
-        case Qt::Key_Left:
+    case Qt::Key_Left:
     {
         m_isLeftPressed = true;
     }
@@ -238,13 +251,21 @@ void GameScene::keyPressEvent(QKeyEvent *event)
     }
         break;
     }
+
+    if(!event->isAutoRepeat())
+    {
+        if(event->key() == Qt::Key_P)
+        {
+            m_game.m_pause = !m_game.m_pause;
+        }
+    }
     QGraphicsScene::keyPressEvent(event);
 }
 
 void GameScene::keyReleaseEvent(QKeyEvent *event)
 {
     switch ( event->key() ) {
-        case Qt::Key_Left:
+    case Qt::Key_Left:
     {
         m_isLeftPressed = false;
     }

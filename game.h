@@ -17,6 +17,7 @@ public:
     static const QString PATH_TO_BALL_PIXMAP;
     static const QString PATH_TO_BLOBBY_PIXMAP;
     static const float PLAYER_SPEED;
+
     b2World m_world;
 
     b2Body *m_playerBody[2];
@@ -28,6 +29,7 @@ public:
     uintptr_t bottomWall;
 
     int m_score1, m_score2;
+    bool m_pause;
 };
 
 #endif // GAME_H

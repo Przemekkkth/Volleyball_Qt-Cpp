@@ -19,6 +19,7 @@ private slots:
 private:
     void loadPixmap();
     void drawScore();
+    void drawPauseText();
     Game m_game;
     QTimer m_timer;
     QElapsedTimer m_elapsedTimer;
