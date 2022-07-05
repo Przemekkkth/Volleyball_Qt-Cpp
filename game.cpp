@@ -19,7 +19,7 @@ Game::Game() : m_world(GRAVITY)
     setWall(365, 450,5,200);  // middle
     setWall(-50,0,10,2000);   // left
     setWall(780,0,10,2000);   // right
-    setWall(-50, -90, 1000, 1);
+    setWall(-50, -90, 1000, 1);//top
 
     b2BodyDef bdef;
     bdef.type=b2_dynamicBody;
@@ -75,4 +75,15 @@ void Game::setWall(int x, int y, int w, int h)
 
     b2Body *b_ground = m_world.CreateBody(&bdef);
     b_ground->CreateFixture(&gr, 1);
+
+
+    //bottom wall
+    //400,520,2000,10
+    if(x == 400 && y == 520 && w == 2000 && h == 10)
+    {
+        b2BodyUserData b;
+        b.pointer = uintptr_t("bottomWall");;
+        b_ground->SetUserData(b);
+        bottomWall = b_ground->GetUserData().pointer;
+    }
 }

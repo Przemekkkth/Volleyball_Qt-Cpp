@@ -145,6 +145,7 @@ void GameScene::loop()
 
             if (it->GetUserData().pointer == m_game.player2)
             {
+                //
                 QGraphicsPixmapItem *p1Item = new QGraphicsPixmapItem(m_blobbyPixmap);
                 p1Item->setTransformOriginPoint(75/2,90/2);
                 p1Item->setPos(pos.x*Game::SCALE, pos.y*Game::SCALE);
@@ -155,12 +156,28 @@ void GameScene::loop()
 
             if (it->GetUserData().pointer == m_game.ball)
             {
+
                 QGraphicsPixmapItem *ballItem = new QGraphicsPixmapItem(m_ballPixmap);
                 ballItem->setTransformOriginPoint(32,32);
                 ballItem->setPos(pos.x*Game::SCALE, pos.y*Game::SCALE);
                 ballItem->setRotation(angle*Game::DEG);
                 //sPlayer.setColor(Color::Red);
                 addItem(ballItem);
+                for (b2ContactEdge* edge = it->GetContactList(); edge; edge = edge->next)
+                {
+                    if(edge->contact->GetFixtureA()->GetBody()->GetUserData().pointer == m_game.bottomWall)
+                    {
+                        if(pos.x < (365/Game::SCALE))
+                        {
+                            qDebug() << "Left side A bottomWall";
+                        }
+                        else if(pos.x > ((365 + 5)/Game::SCALE))
+                        {
+                            qDebug() << "Right side B bottomWall";
+                        }
+
+                    }
+                }
             }
         }
     }
