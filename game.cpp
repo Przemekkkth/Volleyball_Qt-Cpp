@@ -13,7 +13,7 @@ const QString Game::PATH_TO_BLOBBY_PIXMAP = ":/res/blobby.png";
 
 const float Game::PLAYER_SPEED = 8.0f;
 
-Game::Game() : m_world(GRAVITY)
+Game::Game() : m_world(GRAVITY), m_score1(0), m_score2(0)
 {
     setWall(400,520,2000,10); // button
     setWall(365, 450,5,200);  // middle

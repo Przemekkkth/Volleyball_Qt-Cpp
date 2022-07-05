@@ -44,6 +44,25 @@ void GameScene::loadPixmap()
     }
 }
 
+void GameScene::drawScore()
+{
+    //P1
+    QGraphicsSimpleTextItem* textItem = new QGraphicsSimpleTextItem("P1 : " + QString::number(m_game.m_score1));
+    textItem->setPos(10, 10);
+    textItem->setFont(QFont("Arial", 30, 50));
+    addItem(textItem);
+    textItem->setBrush(Qt::red);
+    textItem->setPen(QPen(Qt::red));
+    //P2
+    QGraphicsSimpleTextItem* textItem1 = new QGraphicsSimpleTextItem("P2 : " + QString::number(m_game.m_score2));
+    textItem1->setPos(Game::RESOLUTION.width() - 3*textItem1->boundingRect().width() - 10, 10);
+    textItem1->setFont(QFont("Arial", 30, 50));
+    addItem(textItem1);
+    textItem1->setBrush(Qt::red);
+    textItem1->setPen(QPen(Qt::red));
+
+}
+
 void GameScene::loop()
 {
     m_deltaTime = m_elapsedTimer.elapsed();
@@ -156,7 +175,6 @@ void GameScene::loop()
 
             if (it->GetUserData().pointer == m_game.ball)
             {
-
                 QGraphicsPixmapItem *ballItem = new QGraphicsPixmapItem(m_ballPixmap);
                 ballItem->setTransformOriginPoint(32,32);
                 ballItem->setPos(pos.x*Game::SCALE, pos.y*Game::SCALE);
@@ -170,16 +188,19 @@ void GameScene::loop()
                         if(pos.x < (365/Game::SCALE))
                         {
                             qDebug() << "Left side A bottomWall";
+                            m_game.m_score2++;
                         }
                         else if(pos.x > ((365 + 5)/Game::SCALE))
                         {
                             qDebug() << "Right side B bottomWall";
+                            m_game.m_score1++;
                         }
-
                     }
                 }
             }
         }
+
+        drawScore();
     }
 }
 

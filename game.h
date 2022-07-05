@@ -26,6 +26,8 @@ public:
     uintptr_t player2;
     uintptr_t ball;
     uintptr_t bottomWall;
+
+    int m_score1, m_score2;
 };
 
 #endif // GAME_H
