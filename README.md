@@ -25,6 +25,6 @@ Compile
 qmake && make
 ```
 ## Adons
-* [Qt] (https://www.qt.io/) - Cross-Platform software for embedded & desktop
-* [Box2D] (https://github.com/erincatto/box2d) - Box2D
-* [Yt] (https://youtu.be/_w2k-Jtuf8k) - gameplay
+* [Qt](https://www.qt.io/) - Cross-Platform software for embedded & desktop
+* [Box2D](https://github.com/erincatto/box2d) - Box2D
+* [Yt](https://youtu.be/_w2k-Jtuf8k) - gameplay
